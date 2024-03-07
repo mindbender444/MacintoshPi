@@ -34,6 +34,7 @@ ROM4OS[9]="https://smb4.s3.us-west-2.amazonaws.com/sheepshaver/apple_roms/newwor
 
 
 function usercheck {
+ # Disabled the user check, trying to change to run for any user
  # [ $USER != "pi" ] && echo 'Run this script as the "pi" user.' && exit
 }
 
