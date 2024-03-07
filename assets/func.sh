@@ -87,21 +87,22 @@ function net_error {
     exit
 }
 
-
-
-#Old Function
+#Old Functions
 #function Base_dir {
 #   [ -d ${BASE_DIR} ] || ( sudo mkdir -p ${BASE_DIR} && sudo chown pi:pi ${BASE_DIR} )
 #}
 
-#New Function, instead of pi user and group it does the current user and group
+#function Src_dir {
+#   [ -d ${SRC_DIR} ] || ( sudo mkdir -p ${SRC_DIR} && sudo chown pi:pi ${SRC_DIR} )
+#}
+
+# New Functions, instead of pi user and group they use the current user and group
 function Base_dir {
    [ -d "${BASE_DIR}" ] || ( sudo mkdir -p "${BASE_DIR}" && sudo chown $USER:$(id -gn $USER) "${BASE_DIR}" )
 }
 
-
 function Src_dir {
-   [ -d ${SRC_DIR} ] || ( sudo mkdir -p ${SRC_DIR} && sudo chown pi:pi ${SRC_DIR} )
+   [ -d "${SRC_DIR}" ] || ( sudo mkdir -p "${SRC_DIR}" && sudo chown $USER:$(id -gn $USER) "${SRC_DIR}" )
 }
 
 function Build_NetDriver {
@@ -118,7 +119,8 @@ printf "\e[95m"; echo '
 cd Linux/NetDriver
 make
 sudo make dev
-sudo chown pi /dev/sheep_net
+sudo chown $USER /dev/sheep_net # Changed to current user
+# Old version (sudo chown pi /dev/sheep_net)
 sudo make install
 sudo modprobe sheep_net
 
@@ -223,7 +225,8 @@ sudo apt install -y automake gobjc libudev-dev xa65 build-essential byacc texi2h
 Base_dir
 mkdir -p ${SRC_DIR}
 
-[ -d "/home/pi/Downloads" ] || mkdir /home/pi/Downloads
+[ -d "$HOME/Downloads" ] || mkdir "$HOME/Downloads" # Updated version to refer to current user
+# [ -d "/home/pi/Downloads" ] || mkdir /home/pi/Downloads
 
 wget ${SDL2_SOURCE} -O - | tar -xz -C ${SRC_DIR}
 [ $? -ne 0 ] && net_error "SDL2 sources"
