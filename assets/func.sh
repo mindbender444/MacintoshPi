@@ -34,7 +34,7 @@ ROM4OS[9]="https://smb4.s3.us-west-2.amazonaws.com/sheepshaver/apple_roms/newwor
 
 
 function usercheck {
-  [ $USER != "pi" ] && echo 'Run this script as the "pi" user.' && exit
+ # [ $USER != "pi" ] && echo 'Run this script as the "pi" user.' && exit
 }
 
 function updateinfo {
@@ -78,8 +78,8 @@ function net_error {
     echo "Error - can't download: $1"
     echo "Check your Internet connection and try again later."
     echo
-    echo "If you still feel its a bug, then please create an issue here:"
-    echo "https://github.com/jaromaz/MacintoshPi/issues/new"
+    #echo "If you still feel its a bug, then please create an issue here:"
+    #echo "https://github.com/jaromaz/MacintoshPi/issues/new"
     echo
     parent=$(cat /proc/$PPID/comm)
     [ "$parent" == "build_all.sh" ] && killall -q build_all.sh
@@ -88,9 +88,14 @@ function net_error {
 
 
 
+#Old Function
+#function Base_dir {
+#   [ -d ${BASE_DIR} ] || ( sudo mkdir -p ${BASE_DIR} && sudo chown pi:pi ${BASE_DIR} )
+#}
 
+#New Function, instead of pi user and group it does the current user and group
 function Base_dir {
-   [ -d ${BASE_DIR} ] || ( sudo mkdir -p ${BASE_DIR} && sudo chown pi:pi ${BASE_DIR} )
+   [ -d "${BASE_DIR}" ] || ( sudo mkdir -p "${BASE_DIR}" && sudo chown $USER:$(id -gn $USER) "${BASE_DIR}" )
 }
 
 
