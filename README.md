@@ -1,7 +1,10 @@
 #THIS IS A FORK. PLEASE USE UPSTREAM AS THIS IS BEING MODIFIED BY SOMEONE WHO HAS NO IDEA WHAT THEY ARE DOING!!
 
 Changes so far:
-  Instead of running as pi:pi user and group, run the scripts as the current user and group aka. $USER:$(id -gn $USER)
+
+Instead of running as pi:pi user and group, run the scripts as the current user and group aka. $USER:$(id -gn $USER)
+
+Next: Testing for Raspberry Pi 4. It says it won't work (But Why?!)
 
 # MacintoshPi
 
