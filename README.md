@@ -1,4 +1,6 @@
 #THIS IS A FORK. PLEASE USE UPSTREAM AS THIS IS BEING MODIFIED BY SOMEONE WHO HAS NO IDEA WHAT THEY ARE DOING!!
+Changes so far:
+  Instead of running as pi:pi user and group, run the scripts as the current user and group aka. $USER:$(id -gn $USER)
 
 # MacintoshPi
 
@@ -47,13 +49,13 @@ mac os9
 
 The process of compiling and installing packages can take about two hours.
 
-Each of these sub-projects can be installed separately by running the corresponding compilation & installation script contained in the directory relevant to the sub-project concerned. The installation scripts must be run from the ```pi``` user.
+Each of these sub-projects can be installed separately by running the corresponding compilation & installation script contained in the directory relevant to the sub-project concerned.
 
 ## Detailed descriptions of MacintoshPi project components
 
 ### Basilisk II (Mac OS 7 and 8) and SheepShaver (Mac OS 9)
 
-The script downloads all files required to start Mac OS - ROMs, system images, and creates configuration files. On installation, directory ```/home/pi/Downloads``` will be visible on the Apple desktop as a ```Unix``` directory - files can be copied both ways between those two resources, but applications cannot be launched directly from that directory. In addition, the so-called *NetDriver* is also compiled, which allows full online access from virtualised *Apple* systems.
+The script downloads all files required to start Mac OS - ROMs, system images, and creates configuration files. On installation, directory ```/home/$USER/Downloads``` will be visible on the Apple desktop as a ```Unix``` directory - files can be copied both ways between those two resources, but applications cannot be launched directly from that directory. In addition, the so-called *NetDriver* is also compiled, which allows full online access from virtualised *Apple* systems.
 Up till now, *Mac OS 9* in the full screen mode (without the unnecessary window manager) has not been available for *Raspberry Pi*. This is perhaps the first such implementation which allows using *Mac OS 9* and SDL2 in the full screen mode with sound and online connection - even on the small *Raspberry Pi 2W*.
 Each system must be launched with the appropriate command: ```mac os7```, ```mac os8``` or ```mac os9```. The additional file ```.img``` or ```.dsk``` can be added to the launched system by adding the image file name at the end of the command which invokes the system concerned, e.g.
 
@@ -161,7 +163,7 @@ Software for *Mac OS 7*, *Mac OS 8* and *Mac OS 9* can be found on the following
 - [Macintosh Archive](https://mirror.macintosharchive.org)
 - [Mac GUI](https://macgui.com/downloads/?cat_id=56)
 
-These websites can be used comfortably in the *Chromium* browser directly in *Raspberry Pi OS* - downloaded files are saved by default in directory ```/home/pi/Downloads```, which is configured as a shared directory for all *Mac OSs* contained in this project - under *Mac OS*, it is displayed as a *Unix drive*.
+These websites can be used comfortably in the *Chromium* browser directly in *Raspberry Pi OS* - downloaded files are saved by default in directory ```/home/$USER/Downloads```, which is configured as a shared directory for all *Mac OSs* contained in this project - under *Mac OS*, it is displayed as a *Unix drive*.
 
 Although not every downloaded app will run in the *Basilisk II* or *SheepShaver* emulation (this is the case with e.g. OpenGL applications), the vast majority will run correctly. Before downloading, make sure that the software is from the abandonware group or purchase the required licence if still possible.
 
