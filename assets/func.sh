@@ -152,6 +152,12 @@ cd ${SRC_DIR}/macemu/SheepShaver
 make links
 cd src/Unix
 
+if [ "$(getconf LONG_BIT)" = "64" ]; then
+    ADDR_MODE="--enable-addressing=direct,0x20000000"
+else
+    ADDR_MODE="--enable-addressing=direct,0x10000000"
+fi
+
 NO_CONFIGURE=1 ./autogen.sh &&
 ./configure --enable-sdl-audio \
             --enable-sdl-video \
@@ -159,7 +165,7 @@ NO_CONFIGURE=1 ./autogen.sh &&
             --without-gtk \
             --without-mon \
             --without-esd \
-            --enable-addressing=direct,0x10000000
+            ${ADDR_MODE}
 
 make -j3
 sudo make install
