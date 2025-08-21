@@ -27,20 +27,10 @@ usercheck
 updateinfo
 MacOS_version 7
 
-ARCH=$(dpkg --print-architecture)
 BASE_PKGS="automake gobjc xa65 build-essential byacc texi2html flex unzip texinfo unar bison raspberrypi-kernel-headers"
 LIB_PKGS="libudev-dev libreadline-dev libxaw7-dev libgtk2.0-cil-dev libgtkglext1-dev libpulse-dev libnet1 libnet1-dev libpcap0.8 libpcap0.8-dev libvte-dev libasound2-dev"
 
-if [ "$ARCH" = "arm64" ]; then
-    sudo dpkg --add-architecture armhf
-    sudo apt update
-    for pkg in $LIB_PKGS; do
-        ARCH_LIB_PKGS+="${pkg}:armhf "
-    done
-    sudo apt install -y $BASE_PKGS $ARCH_LIB_PKGS
-else
-    sudo apt install -y $BASE_PKGS $LIB_PKGS
-fi
+sudo apt install -y $BASE_PKGS $LIB_PKGS
 
 [ $? -ne 0 ] && net_error "Mac OS 7 apt packages"
 

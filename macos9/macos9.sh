@@ -27,20 +27,10 @@ usercheck
 updateinfo
 MacOS_version 9
 
-ARCH=$(dpkg --print-architecture)
 BASE_PKGS="automake gobjc xa65 build-essential byacc texi2html flex texinfo bison raspberrypi-kernel-headers git x11proto-xf86dga-dev"
 LIB_PKGS="libdirectfb-dev libudev-dev libreadline-dev libxaw7-dev libgtk2.0-cil-dev libgtkglext1-dev libpulse-dev libnet1 libnet1-dev libpcap0.8 libpcap0.8-dev libvte-dev libasound2-dev libgtk2.0-dev libesd0-dev libxxf86dga-dev libxxf86dga1 libsdl1.2-dev"
 
-if [ "$ARCH" = "arm64" ]; then
-    sudo dpkg --add-architecture armhf
-    sudo apt update
-    for pkg in $LIB_PKGS; do
-        ARCH_LIB_PKGS+="${pkg}:armhf "
-    done
-    sudo apt install -y $BASE_PKGS $ARCH_LIB_PKGS
-else
-    sudo apt install -y $BASE_PKGS $LIB_PKGS
-fi
+sudo apt install -y $BASE_PKGS $LIB_PKGS
 
 [ $? -ne 0 ] && net_error "Mac OS 9 apt packages"
 
