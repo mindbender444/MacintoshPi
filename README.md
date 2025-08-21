@@ -146,6 +146,8 @@ The maximum emulator performance is achieved in the native resolution of the emu
 
 The launcher's task is to launch a given version of *Mac OS*, and if one is already running with appropriate parameters, then to overwrite ```config.txt``` and any other system files with the appropriate screen resolution and position assigned to a specific system or any other defined application, and then to launch the emulator or application right after a system restart, this time in the new resolution.
 
+The templates select the modern `vc4-kms-v3d` overlay when available and fall back to `vc4-fkms-v3d`. The active overlay can be seen in `/boot/config.txt`, and you can switch manually by editing the `dtoverlay` line and rebooting.
+
 The name of the directory with the data with which the system is to be overwritten is identical as the name of the parameter following the ```mac``` command, e.g. ```mac os8-480``` will restart *Raspberry Pi OS* in 640x480 resolution, and then launch *Mac OS 8* also in that resolution, but the ```mac os8``` command will simply launch *Mac OS 8* in the most recently selected resolution.
 
 Various startup chimes are played at the launch of each system - depending on the selected resolution: Macintosh 128K, Macintosh Classic II, Macintosh Color Classic, Macintosh Performa 520, Power Macintosh 550, Power Macintosh G3 sounds.
