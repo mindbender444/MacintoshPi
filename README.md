@@ -81,7 +81,7 @@ The script that compiles the **VICE** *Commodore* emulator which can be used fo
 ### MacintoshPi Virtual Modem
 
 A script that compiles and installs a virtual modem in *Raspberry Pi OS*, allowing connection with modern-day telnet BBSs using any terminal software launched on the aforementioned *Basilisk II*, *SheepShaver* and *VICE* emulators, and on *Raspberry Pi OS* itself.
-The *MacintoshPi Virtual Modem* is controlled by systemd and uses the *tpcser* software which, through the *tty0tty* project, writes to virtual device ```/dev/tnt0```. The data can be read from another virtual device ```/dev/tnt1```, which thus becomes a virtual serial port in the system. The modem launches by default after the system boots.
+The *MacintoshPi Virtual Modem* is controlled by systemd and uses the *tpcser* software which, through the *tty0tty* project, writes to virtual device ```/dev/tnt0```. The data can be read from another virtual device ```/dev/tnt1```, which thus becomes a virtual serial port in the system. The driver is installed via DKMS and rebuilds automatically on kernel updates. The modem launches by default after the system boots.
 
 It can be reset or paused with the standard systemd commands:
 
