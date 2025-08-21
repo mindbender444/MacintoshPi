@@ -14,7 +14,6 @@
 # Virtual Modem - auto-compile/install script
 # -------------------------------------------
 
-BDIR=~/vmodem-build
 
 printf "\e[92m"; echo '
 ** MacintoshPi
@@ -27,21 +26,13 @@ __     ___      _               _    __  __           _
 '; printf "\e[0m"; sleep 2
 source ./assets/func.sh
 updateinfo
-sudo apt install -y tcpser raspberrypi-kernel-headers build-essential
+sudo apt install -y tcpser raspberrypi-kernel-headers dkms build-essential
 [ $? -ne 0 ] && net_error "VICE apt packages"
-mkdir $BDIR && cd $BDIR
-wget https://github.com/freemed/tty0tty/archive/refs/tags/1.2.tar.gz -O ${BDIR}/tty0tty-1.2.tar.gz
-[ $? -ne 0 ] && net_error "tty0tty sources"
-cd $BDIR
-tar zxf tty0tty-1.2.tar.gz
-cd tty0tty-1.2/module
-make
-sudo cp tty0tty.ko /lib/modules/$(uname -r)/kernel/drivers/misc/
-sudo depmod
+sudo cp -r ./vmodem/tty0tty-dkms/ /usr/src/tty0tty-1.2
+sudo dkms install -m tty0tty -v 1.2 --force
 sudo modprobe tty0tty
 sudo chmod 666 /dev/tnt*
 echo tty0tty | sudo tee -a /etc/modules
-
 sudo touch /var/log/vmodem.log
 sudo chmod 666 /var/log/vmodem.log
 
@@ -82,13 +73,11 @@ EOF
 sudo mv vmodem.service /lib/systemd/system
 sudo mv vmodem.conf /etc
 sudo chmod 666 /etc/vmodem.conf
-cd ~/
-rm -rf $BDIR
 
 sudo systemctl enable --now vmodem.service
 
 echo "** vmodem ready **"
-echo "** You must repeat this proces every kernel update **"
+echo "** tty0tty will rebuild automatically on kernel updates **"
 echo "** Run: sudo systemctl [ start | stop | reset ] vmodem **"
 echo "** You can change modem speed at: /etc/vmodem.conf **"
 
