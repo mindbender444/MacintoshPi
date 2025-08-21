@@ -21,7 +21,7 @@ WAV_DIR="${BASE_DIR}/sounds"
 SRC_DIR="${BASE_DIR}/src"
 BASILISK_REPO="https://github.com/kanjitalk755/macemu"
 SHEEPSHAVER_REPO=${BASILISK_REPO}
-SDL2_SOURCE="https://www.libsdl.org/release/SDL2-2.0.7.tar.gz"
+SDL2_SOURCE="https://github.com/libsdl-org/SDL/releases/download/release-2.28.5/SDL2-2.28.5.tar.gz"
 VICE_SOURCE="https://downloads.sourceforge.net/project/vice-emu/releases/vice-3.4.tar.gz"
 BASILISK_FILE="/usr/local/bin/BasiliskII"
 SHEEPSHAVER_FILE="/usr/local/bin/SheepShaver"
@@ -37,7 +37,7 @@ case "$(uname -m)" in
     SDL2_LIBDIR="/usr/local/lib"
     ;;
 esac
-SDL2_FILE="${SDL2_LIBDIR}/libSDL2-2.0.so.0.7.0"
+SDL2_FILE="${SDL2_LIBDIR}/libSDL2-2.0.so.0.2800.5"
 HDD_IMAGES="https://homer-retro.space/appfiles"
 ASOFT="${HDD_IMAGES}/as/asoft.tar.gz"
 ROM4OS[7]="https://github.com/macmade/Macintosh-ROMs/raw/18e1d0a9756f8ae3b9c005a976d292d7cf0a6f14/Performa-630.ROM"
@@ -242,7 +242,7 @@ wget ${SDL2_SOURCE} -O - | tar -xz -C ${SRC_DIR}
 
 ARCH=$(uname -m)
 if [ "$ARCH" = "armv7l" ]; then
-    HOST_TRIPLE=arm-raspberry-linux-gnueabihf
+    HOST_TRIPLE=arm-linux-gnueabihf
     SDL2_LIBDIR="/usr/lib/arm-linux-gnueabihf"
 elif [ "$ARCH" = "aarch64" ]; then
     HOST_TRIPLE=aarch64-linux-gnu
@@ -251,9 +251,9 @@ else
     echo "Unsupported architecture: $ARCH"
     return 1
 fi
-SDL2_FILE="${SDL2_LIBDIR}/libSDL2-2.0.so.0.7.0"
+SDL2_FILE="${SDL2_LIBDIR}/libSDL2-2.0.so.0.2800.5"
 
-cd ${SRC_DIR}/SDL2-2.0.7 &&
+cd ${SRC_DIR}/SDL2-2.28.5 &&
 ./configure --host=${HOST_TRIPLE} \
             --libdir=${SDL2_LIBDIR} \
             --disable-video-opengl \
