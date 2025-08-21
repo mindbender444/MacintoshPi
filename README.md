@@ -1,9 +1,9 @@
-# THIS IS A FORK. PLEASE USE UPSTREAM AS THIS IS BEING MODIFIED BY SOMEONE WHO HAS NO IDEA WHAT THEY ARE DOING!!
-# This branch is an attempt to get the code base to work on a pi 400. NOT WORKING AS OF YET!!
+# THIS IS A FORK. Please use the upstream project unless you need Raspberry Pi 4 or Pi 400 support.
+# This branch adds Raspberry Pi 4 and Pi 400 compatibility.
 
 # MacintoshPi
 
-MacintoshPi is a small project that allows running full-screen versions of Apple's *Mac OS 7*, *Mac OS 8* and *Mac OS 9* with sound, active Internet connection and modem emulation under *Raspberry Pi*. All this without the X.org manager, only a multimedia SDL2 library and from the CLI / *Raspberry Pi OS (Legacy)*. This lets emulators use full power of *Raspberry Pi*, making them more stable and useful in combination with additional retro-software. Installation requires running a single script on a clean *Raspberry Pi OS (full) Legacy* and waiting about two hours for the packages to compile and install. In addition, thanks to a document contained in the project, it is possible in dual-boot to place the fastest (bare-metal) *Commodore 64/128/PET* emulator **BMC64**, thus building an interesting retro package on a single SD card. The entire *MacintoshPi* project runs on **Raspberry Pi Zero 2 W**, **2**, **2B**, **3**, **3B**, **3A+**, **3B+** (at present, it does not run on version 4).
+MacintoshPi is a small project that allows running full-screen versions of Apple's *Mac OS 7*, *Mac OS 8* and *Mac OS 9* with sound, active Internet connection and modem emulation under *Raspberry Pi*. All this without the X.org manager, only a multimedia SDL2 library and from the CLI / *Raspberry Pi OS (Legacy)*. This lets emulators use full power of *Raspberry Pi*, making them more stable and useful in combination with additional retro-software. Installation requires running a single script on a clean *Raspberry Pi OS (full) Legacy* and waiting about two hours for the packages to compile and install. In addition, thanks to a document contained in the project, it is possible in dual-boot to place the fastest (bare-metal) *Commodore 64/128/PET* emulator **BMC64**, thus building an interesting retro package on a single SD card. The entire *MacintoshPi* project runs on **Raspberry Pi Zero 2 W**, **2**, **2B**, **3**, **3B**, **3A+**, **3B+**, **4** and **Pi 400**.
 
 Below you will find a short clip showing what MacintoshPi can do:
 
@@ -35,6 +35,8 @@ Special thanks to [Christian Bauer](https://www.cebix.net) and [kanjitalk755](ht
 ## Installation
 
 The project must be installed on a clean, full *Raspberry Pi OS (oldold Legacy) Buster image* [2022-04-04-raspios-buster-armhf.img.xz](https://downloads.raspberrypi.org/raspios_oldstable_armhf/images/raspios_oldstable_armhf-2022-04-07/2022-04-04-raspios-buster-armhf.img.xz) - you must switch to command line or set system start to CLI (Start -> Preferences -> Raspberry Pi Configuration : *To CLI* and *Wait for network* checked). The installation process requires a minimum 16 GB SD card.
+
+MacintoshPi works with both 32‑bit (*armhf*) and 64‑bit (*arm64*) Raspberry Pi OS. The scripts target the 32‑bit “Legacy” release, and several emulators are available only in 32‑bit form. When running a 64‑bit OS on hardware such as the Pi 4 or Pi 400, enable 32‑bit package support and expect slightly higher memory usage.
 
 On a 64‑bit Raspberry Pi OS, 32‑bit packages are required. Enable them before building by running:
 
