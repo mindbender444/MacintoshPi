@@ -25,7 +25,19 @@ SDL2_SOURCE="https://www.libsdl.org/release/SDL2-2.0.7.tar.gz"
 VICE_SOURCE="https://downloads.sourceforge.net/project/vice-emu/releases/vice-3.4.tar.gz"
 BASILISK_FILE="/usr/local/bin/BasiliskII"
 SHEEPSHAVER_FILE="/usr/local/bin/SheepShaver"
-SDL2_FILE="/usr/local/lib/libSDL2-2.0.so.0.7.0"
+# Set library path depending on architecture for SDL2 detection
+case "$(uname -m)" in
+  armv7l)
+    SDL2_LIBDIR="/usr/lib/arm-linux-gnueabihf"
+    ;;
+  aarch64)
+    SDL2_LIBDIR="/usr/lib/aarch64-linux-gnu"
+    ;;
+  *)
+    SDL2_LIBDIR="/usr/local/lib"
+    ;;
+esac
+SDL2_FILE="${SDL2_LIBDIR}/libSDL2-2.0.so.0.7.0"
 HDD_IMAGES="https://homer-retro.space/appfiles"
 ASOFT="${HDD_IMAGES}/as/asoft.tar.gz"
 ROM4OS[7]="https://github.com/macmade/Macintosh-ROMs/raw/18e1d0a9756f8ae3b9c005a976d292d7cf0a6f14/Performa-630.ROM"
@@ -222,8 +234,22 @@ mkdir -p ${SRC_DIR}
 wget ${SDL2_SOURCE} -O - | tar -xz -C ${SRC_DIR}
 [ $? -ne 0 ] && net_error "SDL2 sources"
 
-cd ${SRC_DIR}/SDL2-2.0.7 && 
-./configure --host=arm-raspberry-linux-gnueabihf \
+ARCH=$(uname -m)
+if [ "$ARCH" = "armv7l" ]; then
+    HOST_TRIPLE=arm-raspberry-linux-gnueabihf
+    SDL2_LIBDIR="/usr/lib/arm-linux-gnueabihf"
+elif [ "$ARCH" = "aarch64" ]; then
+    HOST_TRIPLE=aarch64-linux-gnu
+    SDL2_LIBDIR="/usr/lib/aarch64-linux-gnu"
+else
+    echo "Unsupported architecture: $ARCH"
+    return 1
+fi
+SDL2_FILE="${SDL2_LIBDIR}/libSDL2-2.0.so.0.7.0"
+
+cd ${SRC_DIR}/SDL2-2.0.7 &&
+./configure --host=${HOST_TRIPLE} \
+            --libdir=${SDL2_LIBDIR} \
             --disable-video-opengl \
             --disable-video-x11 \
             --disable-pulseaudio \
