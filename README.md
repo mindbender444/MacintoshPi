@@ -2,7 +2,7 @@
 
 # MacintoshPi
 
-MacintoshPi is a small project that allows running full-screen versions of Apple's *Mac OS 7*, *Mac OS 8* and *Mac OS 9* with sound, active Internet connection and modem emulation under *Raspberry Pi*. All this without the X.org manager, only a multimedia SDL2 library and from the CLI / *Raspberry Pi OS (Legacy)*. This lets emulators use full power of *Raspberry Pi*, making them more stable and useful in combination with additional retro-software. Installation requires running a single script on a clean *Raspberry Pi OS (full) Legacy* and waiting about two hours for the packages to compile and install. In addition, thanks to a document contained in the project, it is possible in dual-boot to place the fastest (bare-metal) *Commodore 64/128/PET* emulator **BMC64**, thus building an interesting retro package on a single SD card. The entire *MacintoshPi* project runs on **Raspberry Pi Zero 2 W**, **2**, **2B**, **3**, **3B**, **3A+**, **3B+** (at present, it does not run on version 4).
+MacintoshPi is a small project that allows running full-screen versions of Apple's *Mac OS 7*, *Mac OS 8* and *Mac OS 9* with sound, active Internet connection and modem emulation under *Raspberry Pi*. All this without the X.org manager, only a multimedia SDL2 library and from the CLI / *Raspberry Pi OS (Legacy)*. This lets emulators use full power of *Raspberry Pi*, making them more stable and useful in combination with additional retro-software. Installation requires running a single script on a clean *Raspberry Pi OS (full) Legacy* and waiting about two hours for the packages to compile and install. In addition, thanks to a document contained in the project, it is possible in dual-boot to place the fastest (bare-metal) *Commodore 64/128/PET* emulator **BMC64**, thus building an interesting retro package on a single SD card. The entire *MacintoshPi* project runs on **Raspberry Pi Zero 2 W**, **2**, **2B**, **3**, **3B**, **3A+**, **3B+**, **4**, and **400**. For **Pi 4** and **Pi 400** use the *Bookworm* release of *Raspberry Pi OS* (see [Raspberry Pi 4/400 and Bookworm](#raspberry-pi-4400-and-bookworm)).
 
 Below you will find a short clip showing what MacintoshPi can do:
 
@@ -48,6 +48,18 @@ mac os9
 The process of compiling and installing packages can take about two hours.
 
 Each of these sub-projects can be installed separately by running the corresponding compilation & installation script contained in the directory relevant to the sub-project concerned. The installation scripts must be run from the ```pi``` user.
+
+### Raspberry Pi 4/400 and Bookworm
+
+Raspberry Pi 4 and Raspberry Pi 400 are supported when using the Raspberry Pi OS *Bookworm* release. Start from a clean full Bookworm image and, before running `./build_all.sh`:
+
+* boot to the console using `raspi-config` and disable the desktop
+* enable the legacy ("fake-kms") GL driver and set at least 128 MB of GPU memory.
+
+#### Limitations
+
+* only the 32‑bit Bookworm image has been tested
+* some components (such as CDEmu audio or dual‑boot setups) may require extra manual configuration.
 
 ## Detailed descriptions of MacintoshPi project components
 
