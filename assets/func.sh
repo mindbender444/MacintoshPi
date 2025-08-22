@@ -32,6 +32,7 @@ ROM4OS[7]="https://github.com/macmade/Macintosh-ROMs/raw/18e1d0a9756f8ae3b9c005a
 ROM4OS[8]="https://github.com/macmade/Macintosh-ROMs/raw/main/Quadra-650.ROM"
 ROM4OS[9]="https://smb4.s3.us-west-2.amazonaws.com/sheepshaver/apple_roms/newworld86.rom.zip"
 
+BUILD_HOST=$(dpkg-architecture -qDEB_BUILD_GNU_TYPE 2>/dev/null || uname -m)
 
 function usercheck {
   [ $USER != "pi" ] && echo 'Run this script as the "pi" user.' && exit
@@ -222,8 +223,8 @@ mkdir -p ${SRC_DIR}
 wget ${SDL2_SOURCE} -O - | tar -xz -C ${SRC_DIR}
 [ $? -ne 0 ] && net_error "SDL2 sources"
 
-cd ${SRC_DIR}/SDL2-2.0.7 && 
-./configure --host=arm-raspberry-linux-gnueabihf \
+cd ${SRC_DIR}/SDL2-2.0.7 &&
+./configure --host=${BUILD_HOST} \
             --disable-video-opengl \
             --disable-video-x11 \
             --disable-pulseaudio \
