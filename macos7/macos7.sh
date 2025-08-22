@@ -27,10 +27,10 @@ usercheck
 updateinfo
 MacOS_version 7
 
-sudo apt install -y automake gobjc libudev-dev xa65 build-essential byacc texi2html \
-                    flex libreadline-dev unzip libxaw7-dev texinfo libxaw7-dev unar \
-                    libgtk2.0-cil-dev libgtkglext1-dev libpulse-dev bison libnet1 \
-                    libnet1-dev libpcap0.8 libpcap0.8-dev libvte-dev libasound2-dev \
+sudo apt install -y automake gobjc libudev-dev xa65 build-essential byacc \
+                    flex libreadline-dev unzip libxaw7-dev texinfo unar \
+                    libgtk-3-dev libpulse-dev bison libnet1 libnet1-dev \
+                    libpcap0.8 libpcap0.8-dev libvte-2.91-dev libasound2-dev \
                     raspberrypi-kernel-headers
 
 [ $? -ne 0 ] && net_error "Mac OS 7 apt packages"

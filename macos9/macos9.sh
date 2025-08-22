@@ -27,13 +27,12 @@ usercheck
 updateinfo
 MacOS_version 9
 
-sudo apt install -y libdirectfb-dev automake gobjc libudev-dev xa65 build-essential \
-                    alsa-oss osspd byacc texi2html flex libreadline-dev libxaw7-dev \
-                    texinfo libxaw7-dev libgtk2.0-cil-dev libgtkglext1-dev libpulse-dev \
-                    bison libnet1 libnet1-dev libpcap0.8 libpcap0.8-dev libvte-dev \
-                    libasound2-dev raspberrypi-kernel-headers build-essential git \
-                    libgtk2.0-dev x11proto-xf86dga-dev libesd0-dev libxxf86dga-dev \
-                    libxxf86dga1 libsdl1.2-dev 
+sudo apt install -y automake gobjc libudev-dev xa65 build-essential \
+                    alsa-oss osspd byacc flex libreadline-dev libxaw7-dev \
+                    texinfo libgtk-3-dev libpulse-dev bison libnet1 libnet1-dev \
+                    libpcap0.8 libpcap0.8-dev libvte-2.91-dev libasound2-dev \
+                    raspberrypi-kernel-headers git xorgproto libxxf86dga-dev \
+                    libxxf86dga1
 
 [ $? -ne 0 ] && net_error "Mac OS 9 apt packages"
 
