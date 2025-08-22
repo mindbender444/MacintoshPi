@@ -33,7 +33,7 @@ Special thanks to [Christian Bauer](https://www.cebix.net) and [kanjitalk755](ht
 
 ## Installation
 
-The project must be installed on a clean, full *Raspberry Pi OS (oldold Legacy) Buster image* [2022-04-04-raspios-buster-armhf.img.xz](https://downloads.raspberrypi.org/raspios_oldstable_armhf/images/raspios_oldstable_armhf-2022-04-07/2022-04-04-raspios-buster-armhf.img.xz) - you must switch to command line or set system start to CLI (Start -> Preferences -> Raspberry Pi Configuration : *To CLI* and *Wait for network* checked). The installation process requires a minimum 16 GB SD card.
+You must switch to command line or set system start to CLI (Start -> Preferences -> Raspberry Pi Configuration : *To CLI* and *Wait for network* checked). The installation process requires a minimum 16 GB SD card.
 
 Installation of the entire *MacintoshPi* package requires running the single command ```./build_all.sh``` - all dependencies and required packages will be installed automatically:
 
